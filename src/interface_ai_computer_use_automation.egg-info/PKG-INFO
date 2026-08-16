@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: interface-ai-computer-use-automation
+Version: 0.1.0
+Summary: LLM discovery to structured capability to deterministic replay
+Requires-Python: >=3.11
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn[standard]>=0.30
+Requires-Dist: playwright>=1.47
+Requires-Dist: pydantic>=2.9
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: jinja2>=3.1
+Requires-Dist: python-multipart>=0.0.9
+Requires-Dist: openai>=1.50
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.24; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"

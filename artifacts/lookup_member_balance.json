@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "capability_version": "1.0.0",
+  "name": "lookup_member_balance",
+  "description": "Look up a member by ID and return the current savings balance.",
+  "app_id": "legacybank-demo",
+  "entry_url": "http://127.0.0.1:8000",
+  "allowed_origins": [
+    "http://127.0.0.1:8000"
+  ],
+  "inputs": {
+    "member_id": {
+      "type": "string",
+      "description": "Institution member identifier.",
+      "required": true,
+      "sensitive": false
+    }
+  },
+  "outputs": {
+    "member_name": {
+      "type": "string",
+      "description": "Member display name.",
+      "source_step_id": "step_3"
+    },
+    "savings_balance": {
+      "type": "string",
+      "description": "Current savings balance.",
+      "source_step_id": "step_4"
+    }
+  },
+  "steps": [
+    {
+      "id": "step_1",
+      "action": "fill",
+      "description": "Enter member ID",
+      "target": {
+        "description": "Member ID field",
+        "candidates": [
+          {
+            "kind": "label",
+            "value": "Member ID",
+            "name": null,
+            "exact": true
+          },
+          {
+            "kind": "css",
+            "value": "input[name='member_id']",
+            "name": null,
+            "exact": true
+          }
+        ]
+      },
+      "value": "{{member_id}}",
+      "output_name": null,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "step_2",
+      "action": "click",
+      "description": "Submit search",
+      "target": {
+        "description": "Search button",
+        "candidates": [
+          {
+            "kind": "role",
+            "value": "button",
+            "name": "Search",
+            "exact": true
+          },
+          {
+            "kind": "text",
+            "value": "Search",
+            "name": null,
+            "exact": true
+          }
+        ]
+      },
+      "value": null,
+      "output_name": null,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "step_3",
+      "action": "extract",
+      "description": "Read member name",
+      "target": {
+        "description": "Member name",
+        "candidates": [
+          {
+            "kind": "css",
+            "value": "[data-field='member-name']",
+            "name": null,
+            "exact": true
+          }
+        ]
+      },
+      "value": null,
+      "output_name": "member_name",
+      "timeout_ms": 5000
+    },
+    {
+      "id": "step_4",
+      "action": "extract",
+      "description": "Read savings balance",
+      "target": {
+        "description": "Savings balance",
+        "candidates": [
+          {
+            "kind": "css",
+            "value": "[data-field='savings-balance']",
+            "name": null,
+            "exact": true
+          }
+        ]
+      },
+      "value": null,
+      "output_name": "savings_balance",
+      "timeout_ms": 5000
+    }
+  ],
+  "checkpoint": {
+    "kind": "visible_text",
+    "value": "Member Profile",
+    "target": null
+  },
+  "business_outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "description": "No member exists for the supplied member ID.",
+      "detector": {
+        "kind": "visible_text",
+        "value": "No member found",
+        "target": null
+      }
+    }
+  ],
+  "policy": {
+    "risk": "read_only",
+    "allowed_actions": [
+      "goto",
+      "click",
+      "fill",
+      "extract",
+      "wait"
+    ],
+    "requires_confirmation": false
+  },
+  "metadata": {
+    "source": "example_artifact",
+    "goal_template": "Look up member {{member_id}} and read their current savings balance"
+  }
+}
