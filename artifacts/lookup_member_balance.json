@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "capability_version": "1.0.0",
   "name": "lookup_member_balance",
-  "description": "Look up a member by ID and return the current savings balance.",
+  "description": "Look up a member by ID and return their current savings balance.",
   "app_id": "legacybank-demo",
   "entry_url": "http://127.0.0.1:8000",
   "allowed_origins": [
@@ -11,30 +11,25 @@
   "inputs": {
     "member_id": {
       "type": "string",
-      "description": "Institution member identifier.",
+      "description": "Institution member identifier",
       "required": true,
       "sensitive": false
     }
   },
   "outputs": {
-    "member_name": {
-      "type": "string",
-      "description": "Member display name.",
-      "source_step_id": "step_3"
-    },
     "savings_balance": {
       "type": "string",
-      "description": "Current savings balance.",
-      "source_step_id": "step_4"
+      "description": "Current savings balance",
+      "source_step_id": "step_3"
     }
   },
   "steps": [
     {
       "id": "step_1",
       "action": "fill",
-      "description": "Enter member ID",
+      "description": "Enter the supplied member ID",
       "target": {
-        "description": "Member ID field",
+        "description": "Member ID input field",
         "candidates": [
           {
             "kind": "label",
@@ -47,6 +42,12 @@
             "value": "input[name='member_id']",
             "name": null,
             "exact": true
+          },
+          {
+            "kind": "css",
+            "value": "#legacy_mid",
+            "name": null,
+            "exact": true
           }
         ]
       },
@@ -57,7 +58,7 @@
     {
       "id": "step_2",
       "action": "click",
-      "description": "Submit search",
+      "description": "Submit the member search",
       "target": {
         "description": "Search button",
         "candidates": [
@@ -82,32 +83,19 @@
     {
       "id": "step_3",
       "action": "extract",
-      "description": "Read member name",
+      "description": "Extract the current savings balance",
       "target": {
-        "description": "Member name",
-        "candidates": [
-          {
-            "kind": "css",
-            "value": "[data-field='member-name']",
-            "name": null,
-            "exact": true
-          }
-        ]
-      },
-      "value": null,
-      "output_name": "member_name",
-      "timeout_ms": 5000
-    },
-    {
-      "id": "step_4",
-      "action": "extract",
-      "description": "Read savings balance",
-      "target": {
-        "description": "Savings balance",
+        "description": "Savings balance value",
         "candidates": [
           {
             "kind": "css",
             "value": "[data-field='savings-balance']",
+            "name": null,
+            "exact": true
+          },
+          {
+            "kind": "css",
+            "value": ".savings-balance",
             "name": null,
             "exact": true
           }
@@ -146,7 +134,7 @@
     "requires_confirmation": false
   },
   "metadata": {
-    "source": "example_artifact",
+    "source": "llm_discovery_compiled",
     "goal_template": "Look up member {{member_id}} and read their current savings balance"
   }
 }
