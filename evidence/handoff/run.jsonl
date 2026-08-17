@@ -1,0 +1,31 @@
+{"ts": "2026-08-17T00:54:27.216392+00:00", "event": "replay_started", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "capability": "lookup_member_balance", "inputs": {"member_id": "10044"}}
+{"ts": "2026-08-17T00:54:29.250019+00:00", "event": "step_started", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T00:54:32.509484+00:00", "event": "step_completed", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_1"}
+{"ts": "2026-08-17T00:54:32.520869+00:00", "event": "step_started", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T00:54:36.007585+00:00", "event": "step_completed", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_2"}
+{"ts": "2026-08-17T00:54:36.009602+00:00", "event": "step_started", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T00:54:38.257844+00:00", "event": "automation_paused", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_3", "reason": "Manual Review Required", "screenshot": "evidence\\handoff\\screenshots\\c16562e0-986a-44e7-a3fb-f7f7314444d7-handoff.png", "operator_url": "http://127.0.0.1:8001"}
+{"ts": "2026-08-17T00:57:20.412535+00:00", "event": "human_control", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_3"}
+{"ts": "2026-08-17T00:57:51.023980+00:00", "event": "automation_resumed", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_3"}
+{"ts": "2026-08-17T00:57:51.612833+00:00", "event": "step_completed", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "step_id": "step_3"}
+{"ts": "2026-08-17T00:57:54.694431+00:00", "event": "replay_succeeded", "status": "success", "run_id": "c16562e0-986a-44e7-a3fb-f7f7314444d7", "outputs": {"savings_balance": "2024.11"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": []}
+{"ts": "2026-08-17T02:59:50.657616+00:00", "event": "replay_started", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "capability": "lookup_member_balance", "inputs": {"member_id": "10044"}}
+{"ts": "2026-08-17T02:59:51.493175+00:00", "event": "step_started", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T02:59:54.583135+00:00", "event": "step_completed", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_1"}
+{"ts": "2026-08-17T02:59:54.583135+00:00", "event": "step_started", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T02:59:57.831327+00:00", "event": "step_completed", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_2"}
+{"ts": "2026-08-17T02:59:57.831652+00:00", "event": "step_started", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T02:59:59.916740+00:00", "event": "automation_paused", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_3", "reason": "Manual Review Required", "screenshot": "evidence\\handoff\\screenshots\\9c638bf7-d84d-42c7-86af-39d66e7f90ad-handoff.png", "operator_url": "http://127.0.0.1:8001"}
+{"ts": "2026-08-17T03:04:56.685010+00:00", "event": "human_control", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "step_id": "step_3"}
+{"ts": "2026-08-17T03:05:09.165970+00:00", "event": "replay_failed", "status": "failure", "run_id": "9c638bf7-d84d-42c7-86af-39d66e7f90ad", "outputs": {}, "code": "RUNTIMEERROR", "message": "Human intervention timed out before control was returned to automation.", "step_id": null, "evidence": "evidence\\handoff\\screenshots\\9c638bf7-d84d-42c7-86af-39d66e7f90ad-failure.png", "recoveries": []}
+{"ts": "2026-08-17T03:07:27.736021+00:00", "event": "replay_started", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "capability": "lookup_member_balance", "inputs": {"member_id": "10044"}}
+{"ts": "2026-08-17T03:07:30.138051+00:00", "event": "step_started", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T03:07:33.281221+00:00", "event": "step_completed", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_1"}
+{"ts": "2026-08-17T03:07:33.281221+00:00", "event": "step_started", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T03:07:36.525597+00:00", "event": "step_completed", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_2"}
+{"ts": "2026-08-17T03:07:36.526945+00:00", "event": "step_started", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T03:07:38.626415+00:00", "event": "automation_paused", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_3", "reason": "Manual Review Required", "screenshot": "evidence\\handoff\\screenshots\\1de3e57f-6ea3-45b7-a317-3fe75e5b6218-handoff.png", "operator_url": "http://127.0.0.1:8001"}
+{"ts": "2026-08-17T03:08:15.471015+00:00", "event": "human_control", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_3"}
+{"ts": "2026-08-17T03:08:37.647801+00:00", "event": "automation_resumed", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_3"}
+{"ts": "2026-08-17T03:08:38.201632+00:00", "event": "step_completed", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "step_id": "step_3"}
+{"ts": "2026-08-17T03:08:41.219311+00:00", "event": "replay_succeeded", "status": "success", "run_id": "1de3e57f-6ea3-45b7-a317-3fe75e5b6218", "outputs": {"savings_balance": "2024.11"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": []}

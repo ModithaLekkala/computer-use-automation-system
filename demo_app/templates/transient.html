@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LegacyBank Temporary Delay</title>
+  <style>
+    body { font-family: "Times New Roman", serif; background: #d8d8d8; margin: 0; }
+    .shell { width: 860px; margin: 24px auto; background: #eee; border: 3px ridge #bbb; }
+    .content { padding: 24px; }
+    .notice { border: 2px solid #777; background: white; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="content">
+      <h2>Temporary Service Delay</h2>
+      <div class="notice">The member record did not finish loading. Please retry.</div>
+      <form method="post" action="/member/retry">
+        <input type="hidden" name="member_id" value="{{ member_id }}">
+        <button type="submit">Retry</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

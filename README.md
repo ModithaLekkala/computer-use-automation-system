@@ -1,178 +1,203 @@
 # Computer-Use Automation System
 
-A focused implementation of the interface.ai take-home assignment:
+Implementation of the interface.ai take-home assignment: an LLM discovers how to complete a task in a real UI, the successful run is compiled into a typed reusable capability, and later invocations replay that capability deterministically with no model in the decision loop.
 
-**The model discovers. The artifact becomes a reusable capability. Deterministic replay is the production path.**
+The included target is a local legacy-style banking application used only with synthetic data.
 
-This repo demonstrates a real browser target, an LLM discovery seam, a typed/versioned capability artifact, deterministic replay without an LLM in the decision loop, explicit business outcomes/failures, policy guardrails, evidence capture, and a minimal human-handoff mechanism.
+## What is implemented
 
-## Architecture
-
-```text
-Natural-language goal
-        |
-        v
-Discovery Agent ---> Planner (LLM or local mock)
-        |
-        v
-SurfaceAdapter ---> Playwright ---> LegacyBank demo UI
-        |
-        v
-Capability artifact (.json)
-        |
-        v
-Deterministic Replay Engine
-        |
-        +--> success + typed outputs
-        +--> business outcome
-        +--> recoverable/hard failure
-        +--> human escalation seam
-```
+- Real LLM-driven discovery using Gemini (with mock/OpenAI planner seams also available)
+- Observe → decide → act browser loop
+- Typed/versioned Pydantic capability artifact
+- Discovery-time value canonicalization (`10042` → `{{member_id}}`)
+- Deterministic Playwright replay with no LLM
+- Stable ordered locator candidates and fill verification
+- Typed outputs and final checkpoint
+- `MEMBER_NOT_FOUND` as a business outcome rather than a crash
+- One bounded recoverable runtime condition (`Temporary Service Delay` → `Retry`)
+- Same-session human handoff: automation pauses, a human operates the already-open Chromium session, then signals resume
+- Origin/action guardrails during both discovery and replay
+- Redacted structured JSONL evidence and failure screenshots
+- Minimal capability catalog API
+- Automated tests
 
 ## Repository layout
 
 ```text
 src/
-  agent/            discovery loop + planners
-  capabilities/     Pydantic schema + compiler + storage
-  replay/           deterministic executor + result contract
+  agent/            LLM discovery loop and planners
+  capabilities/     schema, compiler and artifact storage
+  replay/           deterministic execution/result contract
   surfaces/         surface abstraction + Playwright implementation
-  policy/           allowlist/risk/redaction
-  escalation/       control ownership and operator console
-  observability/    JSONL evidence and screenshots
-  api/              optional capability catalog API
+  policy/           allowlists, risk checks and redaction
+  escalation/       intervention state model + embedded operator console
+  observability/    JSONL logs and screenshots
+  api/              optional agent-facing capability catalog
 
-demo_app/            intentionally legacy-looking target UI
-artifacts/           example saved capability
-evidence/            run logs/screenshots generated locally
-tests/               schema/policy/redaction/unit tests
-REPORT.md            required seven-heading design write-up
+demo_app/            local LegacyBank proxy target
+artifacts/           saved reusable capability
+evidence/            discovery/replay/failure/recovery/handoff evidence
+tests/               focused unit tests
+REPORT.md            design write-up
 ```
 
 ## Setup
 
+Python 3.11+ is recommended.
+
 ### Windows PowerShell
 
 ```powershell
-py -3.11 -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -e ".[dev]"
 playwright install chromium
 Copy-Item .env.example .env
 ```
 
-If PowerShell blocks activation:
+Put a Gemini API key in your local `.env`:
 
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
+```text
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-3.5-flash
 ```
 
-### macOS/Linux
+Do not commit `.env`.
 
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
-playwright install chromium
-cp .env.example .env
-```
-
-## Run the LegacyBank demo target
+## Start the target app
 
 Terminal 1:
 
-```bash
+```powershell
 python -m demo_app.app
 ```
 
 Open `http://127.0.0.1:8000`.
 
-Demo members:
+Synthetic demo members:
 
-| Member ID | Name | Savings |
-|---|---|---:|
-| 10042 | Avery Stone | 4281.52 |
-| 10043 | Jordan Lee | 930.17 |
+| Member ID | Behavior |
+|---|---|
+| `10042` | Normal discovery record; savings `4281.52` |
+| `10043` | Normal replay record; savings `930.17` |
+| `99999` | `MEMBER_NOT_FOUND` business outcome |
+| `10044` | Manual-review / human-handoff demo |
+| `10045` | One transient load, then bounded retry succeeds |
 
-## Deterministic replay
+## Genuine LLM discovery
 
 Terminal 2:
 
-```bash
-python -m src.cli replay --artifact artifacts/lookup_member_balance.json --input member_id=10042
+```powershell
+python -m src.cli discover --goal "Look up member 10042 and read their current savings balance" --target http://127.0.0.1:8000 --planner gemini --artifact artifacts/lookup_member_balance.json
 ```
 
-Expected category: `success`.
+The model operates the live browser. A successful run is compiled into a capability whose input is parameterized as `{{member_id}}` and whose output is `savings_balance`.
 
-Business outcome example:
+## Deterministic replay
 
-```bash
+Replay the Gemini-discovered artifact with a different input:
+
+```powershell
+python -m src.cli replay --artifact artifacts/lookup_member_balance.json --input member_id=10043
+```
+
+Expected output includes:
+
+```json
+{
+  "status": "success",
+  "outputs": {
+    "savings_balance": "930.17"
+  }
+}
+```
+
+Business outcome:
+
+```powershell
 python -m src.cli replay --artifact artifacts/lookup_member_balance.json --input member_id=99999
 ```
 
-Expected category: `business_outcome`, code `MEMBER_NOT_FOUND`.
+Expected:
 
-## Discovery run
-
-For a local run without a paid model:
-
-```bash
-python -m src.cli discover --goal "Look up member 10042 and read their current savings balance" --target http://127.0.0.1:8000 --planner mock --artifact artifacts/lookup_member_balance.json
+```json
+{
+  "status": "business_outcome",
+  "code": "MEMBER_NOT_FOUND"
+}
 ```
 
-For the **final assignment submission**, configure your own API key in `.env` and perform at least one genuine LLM-driven discovery:
+## Recoverable runtime condition
 
-```bash
-python -m src.cli discover --goal "Look up member 10042 and read their current savings balance" --target http://127.0.0.1:8000 --planner openai --artifact artifacts/lookup_member_balance.json
+Reset the demo server if needed, then run:
+
+```powershell
+python -m src.cli recovery-demo --artifact artifacts/lookup_member_balance.json
 ```
 
-The assignment explicitly requires evidence that a genuine model-driven discovery happened, so do not submit only the mock run.
+Member `10045` returns `Temporary Service Delay` once. Replay detects the known condition, logs `recoverable_condition`, clicks `Retry` exactly once, and continues without an LLM.
+
+Evidence is written to:
+
+```text
+evidence/recovery/
+```
+
+## Same-session human handoff
+
+Run:
+
+```powershell
+python -m src.cli handoff-demo --artifact artifacts/lookup_member_balance.json
+```
+
+The browser reaches `Manual Review Required` and **remains open**.
+
+Then:
+
+1. Open `http://127.0.0.1:8001`.
+2. Click **Take Control** for the active run.
+3. In the same already-open Chromium window, click **Continue After Review**.
+4. Return to the operator page and click **Resume**.
+5. Replay continues and extracts the balance.
+
+Evidence is written to:
+
+```text
+evidence/handoff/
+```
+
+This deliberately uses a minimal local operator surface rather than building a full remote co-browsing product.
+
+## Tests
+
+```powershell
+pytest -q
+```
+
+## Safety
+
+- Entry/current origins are validated against an explicit allowlist.
+- Discovery actions are constrained before execution.
+- Replay actions are validated against the capability policy.
+- Risk classes distinguish read-only, reversible and irreversible capabilities.
+- Logs redact secret-bearing keys and common sensitive patterns.
+- `.env` and credentials are excluded from the repository.
+- The demo contains synthetic data only.
 
 ## Evidence
 
-Runs create JSONL logs and failure screenshots under:
+The repository includes the evidence structure and existing genuine discovery/replay evidence. Before final submission, run the current build once for each important path so the latest evidence reflects the final code:
 
 ```text
 evidence/discovery/
 evidence/replay/
-evidence/failure/
+evidence/recovery/
+evidence/handoff/
 ```
 
-Regenerate these on your machine before submission so they truthfully represent your own runs and environment.
+## Design
 
-## Human handoff
-
-Start the minimal operator console:
-
-```bash
-python -m src.escalation.operator_app
-```
-
-Open `http://127.0.0.1:8001`.
-
-The control model is explicit: `AUTOMATION -> PAUSED_FOR_HUMAN -> HUMAN_CONTROL -> RESUMING -> AUTOMATION`.
-The operator UI is deliberately minimal; the control-transfer state model is the important seam.
-
-## Optional capability catalog stretch goal
-
-```bash
-python -m src.api.app
-```
-
-Then use:
-
-```text
-GET  /capabilities
-POST /capabilities/{name}/run
-```
-
-## Tests
-
-```bash
-pytest -q
-```
-
-## Important before submitting
-
-This is a strong starter repository, but you should not blindly submit a generated take-home. Run it, inspect it, make at least a few decisions/changes yourself, generate real evidence, and be able to defend every architectural choice in `REPORT.md`.
+See [`REPORT.md`](REPORT.md) for architecture, schema, determinism/error handling, heterogeneity/multi-tenant design, escalation, safety and deliberate cuts.

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LegacyBank Manual Review</title>
+  <style>
+    body { font-family: "Times New Roman", serif; background: #d8d8d8; margin: 0; }
+    .top { background: #17365d; color: white; padding: 8px 14px; }
+    .shell { width: 860px; margin: 24px auto; background: #eee; border: 3px ridge #bbb; }
+    .content { padding: 24px; }
+    .warning { border: 2px solid #8a6500; background: #fff2cc; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="top"><b>LegacyBank Core Servicing Console v7.4</b></div>
+  <div class="shell">
+    <div class="content">
+      <h2>Manual Review Required</h2>
+      <div class="warning">
+        This member record requires an operator review before automated processing may continue.
+      </div>
+      <p>Member ID: {{ member_id }}</p>
+      <form method="post" action="/member/manual-review/continue">
+        <input type="hidden" name="member_id" value="{{ member_id }}">
+        <button type="submit">Continue After Review</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
