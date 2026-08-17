@@ -100,3 +100,41 @@
 {"ts": "2026-08-16T23:46:37.169863+00:00", "event": "step_started", "run_id": "36ae726e-5039-49eb-97ac-c842ea4b0973", "step_id": "step_2", "action": "click"}
 {"ts": "2026-08-16T23:46:37.533083+00:00", "event": "step_completed", "run_id": "36ae726e-5039-49eb-97ac-c842ea4b0973", "step_id": "step_2"}
 {"ts": "2026-08-16T23:46:37.746193+00:00", "event": "business_outcome", "status": "business_outcome", "run_id": "36ae726e-5039-49eb-97ac-c842ea4b0973", "outputs": {}, "code": "MEMBER_NOT_FOUND", "message": "No member exists for the supplied member ID.", "step_id": "step_2", "evidence": "evidence\\replay\\screenshots\\36ae726e-5039-49eb-97ac-c842ea4b0973-MEMBER_NOT_FOUND.png"}
+{"ts": "2026-08-17T00:52:28.558325+00:00", "event": "replay_started", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "capability": "lookup_member_balance", "inputs": {"member_id": "10043"}}
+{"ts": "2026-08-17T00:52:34.498445+00:00", "event": "step_started", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T00:52:37.871442+00:00", "event": "step_completed", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_1"}
+{"ts": "2026-08-17T00:52:37.874967+00:00", "event": "step_started", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T00:52:41.306466+00:00", "event": "step_completed", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_2"}
+{"ts": "2026-08-17T00:52:41.309212+00:00", "event": "step_started", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T00:52:44.423392+00:00", "event": "step_completed", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "step_id": "step_3"}
+{"ts": "2026-08-17T00:52:47.478471+00:00", "event": "replay_succeeded", "status": "success", "run_id": "d28f07b2-fc73-4380-bf1b-150e729b39df", "outputs": {"savings_balance": "930.17"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": []}
+{"ts": "2026-08-17T00:53:01.023238+00:00", "event": "replay_started", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "capability": "lookup_member_balance", "inputs": {"member_id": "99999"}}
+{"ts": "2026-08-17T00:53:05.235941+00:00", "event": "step_started", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T00:53:08.476151+00:00", "event": "step_completed", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "step_id": "step_1"}
+{"ts": "2026-08-17T00:53:08.476151+00:00", "event": "step_started", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T00:53:12.342436+00:00", "event": "step_completed", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "step_id": "step_2"}
+{"ts": "2026-08-17T00:53:12.346463+00:00", "event": "step_started", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T00:53:12.563150+00:00", "event": "business_outcome", "status": "business_outcome", "run_id": "db11aa24-108b-465b-b941-29ef99c434f8", "outputs": {}, "code": "MEMBER_NOT_FOUND", "message": "No member exists for the supplied member ID.", "step_id": "step_3", "evidence": "evidence\\replay\\screenshots\\db11aa24-108b-465b-b941-29ef99c434f8-MEMBER_NOT_FOUND.png", "recoveries": []}
+{"ts": "2026-08-17T01:01:26.626462+00:00", "event": "replay_started", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "capability": "lookup_member_balance", "inputs": {"member_id": "10043"}}
+{"ts": "2026-08-17T01:01:28.262611+00:00", "event": "step_started", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T01:01:31.461064+00:00", "event": "step_completed", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_1"}
+{"ts": "2026-08-17T01:01:31.461064+00:00", "event": "step_started", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T01:01:34.770273+00:00", "event": "step_completed", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_2"}
+{"ts": "2026-08-17T01:01:34.773896+00:00", "event": "step_started", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T01:01:37.869911+00:00", "event": "step_completed", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "step_id": "step_3"}
+{"ts": "2026-08-17T01:01:40.926806+00:00", "event": "replay_succeeded", "status": "success", "run_id": "acc7ed8b-9a71-4175-98cd-72eba6bd697d", "outputs": {"savings_balance": "930.17"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": []}
+{"ts": "2026-08-17T02:57:37.639182+00:00", "event": "replay_started", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "capability": "lookup_member_balance", "inputs": {"member_id": "10043"}}
+{"ts": "2026-08-17T02:57:43.484124+00:00", "event": "step_started", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T02:57:46.637059+00:00", "event": "step_completed", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_1"}
+{"ts": "2026-08-17T02:57:46.637059+00:00", "event": "step_started", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T02:57:49.922200+00:00", "event": "step_completed", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_2"}
+{"ts": "2026-08-17T02:57:49.922200+00:00", "event": "step_started", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T02:57:52.983706+00:00", "event": "step_completed", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "step_id": "step_3"}
+{"ts": "2026-08-17T02:57:56.025797+00:00", "event": "replay_succeeded", "status": "success", "run_id": "96d51b04-764b-493e-9e73-a639b2cb1813", "outputs": {"savings_balance": "930.17"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": []}
+{"ts": "2026-08-17T02:58:28.241603+00:00", "event": "replay_started", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "capability": "lookup_member_balance", "inputs": {"member_id": "99999"}}
+{"ts": "2026-08-17T02:58:30.292773+00:00", "event": "step_started", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T02:58:33.432873+00:00", "event": "step_completed", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "step_id": "step_1"}
+{"ts": "2026-08-17T02:58:33.432873+00:00", "event": "step_started", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T02:58:38.749072+00:00", "event": "step_completed", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "step_id": "step_2"}
+{"ts": "2026-08-17T02:58:38.750138+00:00", "event": "step_started", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T02:58:40.780898+00:00", "event": "business_outcome", "status": "business_outcome", "run_id": "d473bf3d-1aff-4ef3-b121-65da84c024b1", "outputs": {}, "code": "MEMBER_NOT_FOUND", "message": "No member exists for the supplied member ID.", "step_id": "step_3", "evidence": "evidence\\replay\\screenshots\\d473bf3d-1aff-4ef3-b121-65da84c024b1-MEMBER_NOT_FOUND.png", "recoveries": []}

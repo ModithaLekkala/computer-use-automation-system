@@ -1,17 +1,19 @@
 # Submission Checklist
 
-- [ ] Install Python 3.11+ and create `.venv`.
-- [ ] Install dependencies and Playwright Chromium.
-- [ ] Run `pytest -q`.
-- [ ] Run the LegacyBank app.
-- [ ] Run deterministic replay with member `10042`.
-- [ ] Run replay with `99999` and confirm `MEMBER_NOT_FOUND`.
-- [ ] Add your own model API key to local `.env`.
-- [ ] Perform at least one genuine LLM-driven discovery.
-- [ ] Inspect `evidence/` and keep only truthful run evidence.
-- [ ] Confirm `.env` is not committed.
-- [ ] Read every source file and be able to explain it.
-- [ ] Review `REPORT.md` and change anything that does not match your final implementation.
-- [ ] Push to a new public GitHub repository.
-- [ ] Verify README commands from a clean clone.
-- [ ] Email the repository URL on its own line to the assignment address using the same email used to apply.
+- [ ] Create local `.env` from `.env.example`; never commit `.env`.
+- [ ] `pip install -e ".[dev]"`.
+- [ ] `playwright install chromium`.
+- [ ] Start `python -m demo_app.app`.
+- [ ] Run genuine Gemini discovery with member `10042`.
+- [ ] Replay artifact with `10043`; confirm `savings_balance = 930.17`.
+- [ ] Replay artifact with `99999`; confirm `MEMBER_NOT_FOUND`.
+- [ ] Run `python -m src.cli recovery-demo`; confirm recovery evidence.
+- [ ] Run `python -m src.cli handoff-demo`; take control of the SAME Chromium window and resume.
+- [ ] Run `pytest -q`; all tests must pass.
+- [ ] Confirm `evidence/discovery`, `evidence/replay`, `evidence/recovery`, and `evidence/handoff` contain current final-run evidence.
+- [ ] Confirm `.env` is absent from `git status` and GitHub.
+- [ ] Review `REPORT.md` against the final implementation.
+- [ ] Push development branch.
+- [ ] Merge development into main only after all checks pass.
+- [ ] Verify public repo from an incognito/logged-out browser.
+- [ ] Email the public repository URL on its own line to `assignments@interface.ai`.

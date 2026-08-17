@@ -1,0 +1,20 @@
+{"ts": "2026-08-17T00:53:34.668844+00:00", "event": "replay_started", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "capability": "lookup_member_balance", "inputs": {"member_id": "10045"}}
+{"ts": "2026-08-17T00:53:36.581095+00:00", "event": "step_started", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T00:53:39.781743+00:00", "event": "step_completed", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_1"}
+{"ts": "2026-08-17T00:53:39.783759+00:00", "event": "step_started", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T00:53:43.302040+00:00", "event": "step_completed", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_2"}
+{"ts": "2026-08-17T00:53:43.302040+00:00", "event": "step_started", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T00:53:45.850385+00:00", "event": "recoverable_condition", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "code": "TRANSIENT_LOAD", "attempt": 1, "step_id": "step_3"}
+{"ts": "2026-08-17T00:53:46.124443+00:00", "event": "recovery_succeeded", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "code": "TRANSIENT_LOAD", "attempt": 1}
+{"ts": "2026-08-17T00:53:46.209968+00:00", "event": "step_completed", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "step_id": "step_3"}
+{"ts": "2026-08-17T00:53:49.251091+00:00", "event": "replay_succeeded", "status": "success", "run_id": "6ebf0ce0-d22b-4b2f-8635-5140013437f8", "outputs": {"savings_balance": "1575.25"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": [{"code": "TRANSIENT_LOAD", "attempt": 1, "step_id": "step_3"}]}
+{"ts": "2026-08-17T02:59:04.778941+00:00", "event": "replay_started", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "capability": "lookup_member_balance", "inputs": {"member_id": "10045"}}
+{"ts": "2026-08-17T02:59:05.868588+00:00", "event": "step_started", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_1", "action": "fill", "description": "Enter the supplied member ID"}
+{"ts": "2026-08-17T02:59:08.941976+00:00", "event": "step_completed", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_1"}
+{"ts": "2026-08-17T02:59:08.941976+00:00", "event": "step_started", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_2", "action": "click", "description": "Submit the member search"}
+{"ts": "2026-08-17T02:59:12.222686+00:00", "event": "step_completed", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_2"}
+{"ts": "2026-08-17T02:59:12.223761+00:00", "event": "step_started", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_3", "action": "extract", "description": "Extract the current savings balance"}
+{"ts": "2026-08-17T02:59:14.744773+00:00", "event": "recoverable_condition", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "code": "TRANSIENT_LOAD", "attempt": 1, "step_id": "step_3"}
+{"ts": "2026-08-17T02:59:14.960620+00:00", "event": "recovery_succeeded", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "code": "TRANSIENT_LOAD", "attempt": 1}
+{"ts": "2026-08-17T02:59:15.019456+00:00", "event": "step_completed", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "step_id": "step_3"}
+{"ts": "2026-08-17T02:59:18.052235+00:00", "event": "replay_succeeded", "status": "success", "run_id": "1894f091-ae42-4f5a-aa8a-0f9eb674d167", "outputs": {"savings_balance": "1575.25"}, "code": null, "message": null, "step_id": null, "evidence": null, "recoveries": [{"code": "TRANSIENT_LOAD", "attempt": 1, "step_id": "step_3"}]}
